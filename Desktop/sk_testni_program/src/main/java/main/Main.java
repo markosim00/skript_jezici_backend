@@ -107,29 +107,23 @@ public class Main {
             }
 
             if(parts[0].equals("movefile")){
-                File file = new File(parts[1]);
-                localStorage.moveFile(file, parts[2]);
+                localStorage.moveFile(parts[1], parts[2]);
             }
 
             if(parts[0].equals("rmfile")){
-                File file = new File(parts[1]);
-                localStorage.deleteFile(file);
+                localStorage.deleteFile(parts[1]);
             }
 
             if(parts[0].equals("rmdir")){
-                File directory = new File(parts[1]);
-                localStorage.deleteDirectory(directory);
+                localStorage.deleteDirectory(parts[1]);
             }
 
             if(parts[0].equals("download")){
                 localStorage.downloadFile(parts[1], parts[2]);
             }
 
-
-
             if(parts[0].equals("ls")){
-                File directory = new File(parts[1]);
-                String [] files = localStorage.getAllFilesFromDirectory(directory);
+                String [] files = localStorage.getAllFilesFromDirectory(parts[1]);
                 if(files != null) {
                     for (String file : files) {
                         System.out.println(file);
@@ -138,8 +132,7 @@ public class Main {
             }
 
             if(parts[0].equals("lsdir")){
-                File directory = new File(parts[1]);
-                String [] directories = localStorage.getAllDirectoriesFromDirectory(directory);
+                String [] directories = localStorage.getAllDirectoriesFromDirectory(parts[1]);
                 if(directories != null) {
                     for (String dir : directories) {
                         System.out.println(dir);
@@ -148,7 +141,7 @@ public class Main {
             }
 
             if(parts[0].equals("lschild")){
-                List<File> fileList = new ArrayList<File>();
+                List<Object> fileList = new ArrayList<Object>();
                 String [] children = localStorage.getAllChildren(parts[1], fileList);
                 if(children != null) {
                     for (String child : children) {
@@ -206,8 +199,7 @@ public class Main {
             }
 
             if(parts[0].equals("perioddir")){
-                File directory = new File(parts[3]);
-                String [] files = localStorage.getAllFilesInPeriodInDirectory(Long.parseLong(parts[1]), Long.parseLong(parts[2]), directory);
+                String [] files = localStorage.getAllFilesInPeriodInDirectory(Long.parseLong(parts[1]), Long.parseLong(parts[2]), parts[3]);
                 if(files != null) {
                     for (String file : files)
                         System.out.println(file);
